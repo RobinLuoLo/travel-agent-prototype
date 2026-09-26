@@ -37,3 +37,18 @@ python3 hotel_reviews_terra.py reviews LOCATION_ID --size 5
 ```
 
 The first command prints candidate hotels and their Tripadvisor IDs. Review the name and address before choosing an ID for the second command.
+
+## Try the public Ctrip hotel page
+
+The optional `ctrip_reviews.py` script reads one public hotel detail page and extracts the score, review count, and reviews already embedded in that page. It checks the hotel name and street address against the RollingGo result before returning data. RollingGo and Ctrip use different hotel IDs, so the Ctrip URL must first be found and verified for the same hotel. This is a small first-page experiment, not a bulk review API or a complete review history.
+
+For the verified example, RollingGo hotel `43586` matches Ctrip hotel `432964` by name and address:
+
+```sh
+python3 ctrip_reviews.py https://hotels.ctrip.com/hotels/432964.html \
+  --expected-name '北京明豪华美达酒店(首都机场新国展店)' \
+  --expected-address '天竺镇府前一街13号' \
+  --output /absolute/path/to/local/reviews.json
+```
+
+The output is for local evaluation. The scraper does not log in, paginate, or query hidden review endpoints. Recheck the hotel's identity and Ctrip's applicable usage terms before using the content in a published product.
