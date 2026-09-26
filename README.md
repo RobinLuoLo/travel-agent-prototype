@@ -4,13 +4,23 @@ This is a personal travel agent project in development. Its intended use is to h
 
 ## Current scope
 
-The first integration under evaluation is Tripadvisor Terra. The included Python command-line probe can:
+The first live integration is RollingGo. Its Python command-line probe searches hotels and retrieves room prices through its MCP endpoint. A Tripadvisor Terra probe is also included for review research. The Terra probe can:
 
 - Search for hotels in mainland China by name, optionally narrowing by city.
 - Retrieve original-language guest reviews for a selected Tripadvisor location ID.
 - Print the API response as JSON so hotel identity, ratings, review counts, and review content can be inspected before any product design decisions.
 
-The code is prepared, but **live hotel results have not yet been verified** because the project does not yet have a Terra API key. The project does not currently book hotels, make itinerary recommendations, or store guest reviews.
+RollingGo hotel search has been verified with a live call. Its public tools do not expose guest review text or review counts, and a sample live search response did not include a guest score. **Tripadvisor Terra has not yet been verified** because the project does not yet have a Terra API key. The project does not currently book hotels, make itinerary recommendations, or store guest reviews.
+
+## Run the RollingGo hotel probe
+
+Install dependencies with `python3 -m pip install -r requirements.txt`. Set `ROLLINGGO_API_KEY` to a key beginning with `mcp_`, or set `ROLLINGGO_API_KEY_FILE` to a local file containing the key. The file may be a Markdown note; the script extracts only the RollingGo key. Never commit a key or key file.
+
+```sh
+export ROLLINGGO_API_KEY_FILE=/absolute/path/to/local/key-note.md
+python3 rollinggo_hotels.py search '北京' --check-in 2026-10-10 --nights 1
+python3 rollinggo_hotels.py detail HOTEL_ID --check-in 2026-10-10 --check-out 2026-10-11
+```
 
 ## Intended use of Tripadvisor data
 
