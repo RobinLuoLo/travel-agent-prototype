@@ -1,4 +1,4 @@
-# RollingGo — Travel Agent (prototype)
+# Robin Travel Agent (prototype)
 
 This is a personal travel agent project in development. Its intended use is to help a traveler research a trip in mainland China, starting with hotel discovery and evaluation.
 
